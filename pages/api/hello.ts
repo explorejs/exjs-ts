@@ -6,10 +6,16 @@ type Data = {
 };
 
 export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  if (req.method === "POST") {
-    //@ts-expect-error
-    res.status(200).json({ name: process.env.API_KEY });
-  } else {
-    res.status(200).json({ name: "John Doe" });
+  console.log(req.query)
+  const hasAnimal = req.query["animal"]
+
+  if(hasAnimal){
+    send other mailchimp
   }
+  // if (req.method === "POST") {
+  //   //@ts-expect-error
+  //   res.status(200).json({ name: process.env.API_KEY });
+  // } else {
+    res.status(200).json({ name: JSON.stringify(req.query) });
+  // }
 };
